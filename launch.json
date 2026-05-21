@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run ImageEdit",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "QT_AUTO_SCREEN_SCALE_FACTOR": "1",
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Open File in ImageEdit",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": ["${file}"],
+            "console": "integratedTerminal",
+            "env": {
+                "QT_AUTO_SCREEN_SCALE_FACTOR": "1",
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
+}
