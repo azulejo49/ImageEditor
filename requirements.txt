@@ -1,5 +1,25 @@
+# ImageEdit — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# GUI framework — GPL v3
+# PySide6 is a drop-in LGPL alternative if you need commercial licensing
 PyQt6>=6.4.0
+
+# RAW file decoding (libraw Python bindings) — MIT
+# Requires libraw system library:
+#   macOS:  brew install libraw
+#   Ubuntu: apt install libraw-dev
 rawpy>=0.18.0
+
+# Image I/O, color conversion, filtering — Apache 2.0
 opencv-python>=4.7.0
+
+# Array math (the float32 pipeline runs here) — BSD 3-Clause
 numpy>=1.24.0
+
+# EXIF metadata reading, format fallback — HPND (MIT-like)
 Pillow>=9.0.0
+
+# Optional: smooth tone curve interpolation (Pchip)
+# Falls back to numpy linear interpolation if not installed
+# scipy>=1.10.0
