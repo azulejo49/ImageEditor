@@ -4,7 +4,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# ImageEdit/ 
+# ImageEdit #
 Copyright (c) 2026 [Dev.Team- Amiram Azulay | Claude]
 
 This project uses the following open source libraries:
