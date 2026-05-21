@@ -1,21 +1,3 @@
-ur prompt.
-
-Step 4 — Install dependencies
-bashpip install -r requirements.txt
-This installs PyQt6, rawpy, opencv-python, numpy, and Pillow. Takes 1–2 minutes.
-
-Step 5 — Run the app
-bashpython main.py
-Or open a specific file directly:
-bashpython main.py /path/to/photo.cr2
-
-Running in VS Code
-
-Open the ImageEdit folder in VS Code (File → Open Folder)
-Ctrl+Shift+P → Python: Select Interpreter → pick .venv
-Press F5 — it uses the pre-configured .vscode/launch.json
-
-
 ## Running ImageEdit Locally
 
 ### Step 1 — Extract the zip
