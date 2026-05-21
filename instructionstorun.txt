@@ -1,0 +1,88 @@
+ur prompt.
+
+Step 4 — Install dependencies
+bashpip install -r requirements.txt
+This installs PyQt6, rawpy, opencv-python, numpy, and Pillow. Takes 1–2 minutes.
+
+Step 5 — Run the app
+bashpython main.py
+Or open a specific file directly:
+bashpython main.py /path/to/photo.cr2
+
+Running in VS Code
+
+Open the ImageEdit folder in VS Code (File → Open Folder)
+Ctrl+Shift+P → Python: Select Interpreter → pick .venv
+Press F5 — it uses the pre-configured .vscode/launch.json
+
+
+## Running ImageEdit Locally
+
+### Step 1 — Extract the zip
+Unzip `ImageEdit.zip` somewhere on your machine, then open a terminal in that folder:
+```bash
+cd ImageEdit
+```
+
+---
+
+### Step 2 — Create a virtual environment
+```bash
+python3 -m venv .venv
+```
+On **Windows**:
+```bat
+python -m venv .venv
+```
+
+---
+
+### Step 3 — Activate it
+
+**macOS / Linux:**
+```bash
+source .venv/bin/activate
+```
+**Windows:**
+```bat
+.venv\Scripts\activate
+```
+You should see `(.venv)` appear in your prompt.
+
+---
+
+### Step 4 — Install dependencies
+```bash
+pip install -r requirements.txt
+```
+This installs PyQt6, rawpy, opencv-python, numpy, and Pillow. Takes 1–2 minutes.
+
+---
+
+### Step 5 — Run the app
+```bash
+python main.py
+```
+Or open a specific file directly:
+```bash
+python main.py /path/to/photo.cr2
+```
+
+---
+
+### Running in VS Code
+
+1. Open the `ImageEdit` folder in VS Code (`File → Open Folder`)
+2. `Ctrl+Shift+P` → **Python: Select Interpreter** → pick `.venv`
+3. Press **F5** — it uses the pre-configured `.vscode/launch.json`
+
+---
+
+### Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `PyQt6` not found | Try `pip install PyQt6 --pre` |
+| `rawpy` install fails | Install `libraw` first: `brew install libraw` (Mac) or `apt install libraw-dev` (Linux) |
+| Blank window on Linux | Run `export QT_QPA_PLATFORM=xcb` before `python main.py` |
+| Windows DLL error | Install [Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe) |
