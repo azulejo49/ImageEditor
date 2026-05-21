@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="imageedit_logo_preview.svg" width="340"/>
+  <img src="imageedit_logo_preview.svg" width="300"/>
 </div>
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# ImageEdit #
+# ImageEdit/ 
 Copyright (c) 2026 [Dev.Team- Amiram Azulay | Claude]
 
 This project uses the following open source libraries:
@@ -33,6 +33,16 @@ Built with PyQt6 · rawpy · OpenCV/NumPy · 32-bit float core · Non-destructiv
 | **Zoom & pan canvas** | Mouse wheel zoom toward cursor · Alt+drag or middle-click pan |
 | **Drag & drop** | Drop files or folders directly on the window |
 | **Export** | JPEG (quality-selectable), PNG, 16-bit TIFF |
+
+Crop tool — Interactive overlay with draggable corner/edge handles, rule-of-thirds grid, pixel dimensions label, aspect ratio modes (Free / 1:1 / 4:3 / 16:9 / 3:2), Enter to confirm, Escape to cancel, fully non-destructive (stored as normalised coordinates).
+
+Tone curve — Click-to-add control points, right-click to remove, drag to reshape, Pchip monotonic spline interpolation (no ringing), luminance histogram shown behind the curve as context, Reset Curve button, full undo/redo support.
+
+HSL panel — Six hue ranges (Reds, Oranges, Yellows, Greens, Blues, Purples), each with independent Hue shift, Saturation delta, and Luminance delta sliders. Smooth circular hue-distance masking prevents hard edges between ranges.
+
+Before/After view — Draggable vertical split divider, BEFORE/AFTER labels, synced to canvas zoom and pan so both sides show the same crop. Toggle with \ key or toolbar button.
+
+EXIF/Info viewer — Dedicated tab in the right panel, shows Camera Make/Model, Lens, Shutter Speed, Aperture, ISO, Focal Length, Date Taken, and RAW sensor data (black level, white level, raw type). Values auto-formatted (e.g. f/2.8, 1/250 s, 50 mm). GPS coordinates excluded for privacy.
 
 ### Edit Controls
 
@@ -105,22 +115,34 @@ You can also use **"Open File in ImageEdit"** to pass the currently open editor 
 
 ```
 ImageEdit/
-├── main.py                  Entry point, QApplication bootstrap
+├── main.py                       App entry point, HiDPI setup, CLI args
+├── requirements.txt              All dependencies with license notes
+│
 ├── core/
-│   ├── image_pipeline.py    32-bit float processing engine + EditParams
-│   └── histogram.py         Fast per-channel histogram computation
+│   ├── image_pipeline.py         Float32 pipeline engine + EditParams dataclass
+│   └── histogram.py              R/G/B/Lum histogram computation
+│
 ├── workers/
-│   ├── render_worker.py     QThread async render worker (latest-wins)
-│   ├── load_worker.py       QThread async file loader
-│   └── export_worker.py     QThread async file exporter
+│   ├── render_worker.py          QThread async renderer, latest-wins strategy
+│   ├── load_worker.py            QThread async file loader
+│   └── export_worker.py          QThread async JPEG/PNG/TIFF exporter
+│
 ├── ui/
-│   ├── main_window.py       Orchestration, menus, toolbar, layout
-│   ├── image_canvas.py      Zoom/pan display canvas
-│   ├── histogram_widget.py  Live histogram painter
-│   ├── edit_panel.py        Slider-based edit controls
-│   └── file_panel.py        File browser + filmstrip
+│   ├── main_window.py            Orchestration: layout, menus, toolbar, signals
+│   ├── image_canvas.py           Zoom/pan canvas + crop overlay host
+│   ├── crop_tool.py              Crop overlay: rect, handles, aspect ratios
+│   ├── before_after_view.py      Draggable split before/after comparison
+│   ├── curve_widget.py           Interactive tone curve editor (Pchip spline)
+│   ├── edit_panel.py             All sliders + curve + HSL + flip controls
+│   ├── histogram_widget.py       Live R/G/B/Lum filled curve display
+│   ├── file_panel.py             File browser, folder scan, RAW highlighting
+│   ├── exif_panel.py             EXIF metadata table viewer
+│   └── logo_widget.py            SVG logo renderer for toolbar
+│
 └── resources/
-    └── dark.qss             Professional dark Qt stylesheet
+    ├── logo.svg                  App-matched vector logo
+    └── dark.qss                  Professional dark Qt stylesheet
+---
 ```
 
 ### Render pipeline flow
